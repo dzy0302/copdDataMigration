@@ -12,7 +12,7 @@ import json
 
 # 第一步，创建一个logger
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)  # Log等级总开关
+logger.setLevel(logging.INFO)  # Log等级总开关
 
 # 第二步，创建一个handler，用于写入日志文件
 logfile = 'logs/logs.txt'
@@ -21,7 +21,7 @@ fh.setLevel(logging.ERROR)  # 用于写到file的等级开关
 
 # 第三步，再创建一个handler,用于输出到控制台
 ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)  # 输出到console的log等级的开关
+ch.setLevel(logging.INFO)  # 输出到console的log等级的开关
 
 # 第四步，定义handler的输出格式
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(filename)s[:%(lineno)d] - %(message)s')
@@ -53,8 +53,9 @@ def request_api(page):
             logging.error('[接口数据获取失败]' + response_json.get('message'))
             return None
     else:
-        logging.error('[接口访问异常]'+r.text)
+        logging.error('[接口访问异常]' + r.text)
         return None
+
 
 def get_data():
     # 获取页数
@@ -62,11 +63,21 @@ def get_data():
     if data_page is not None:
         total_page = data_page.get('page')
         total_record = data_page.get('total')
+        logging.info('api接口正常，开始获取病例数据（共' + str(total_record) + '份）')
         record_list = []
-        for page in range(1, total_page+1):
+        num_start = 1
+        num_end = 0
+        for page in range(1, total_page + 1):
             data_record = request_api(page)
-            record_list = record_list + data_record.get('data')
+            if data_record is not None:
+                record_page = data_record.get('data')
+                record_list = record_list + record_page
+                num_end = num_end + len(record_page)
+                logging.info('获取第' + str(num_start) + '-' + str(num_end) + '份电子病例成功，等待1秒')
+                num_start = num_end + 1
+                time.sleep(1)
         if len(record_list) == total_record:
+            logging.info('全部病例数据获取完成')
             return record_list
         else:
             logging.info('数据数量有更新，重新获取数据')
@@ -75,7 +86,16 @@ def get_data():
         return None
 
 
+def data_to_db(data):
+    logging.info('数据入库')
+    for record in data:
+        print(record)
+        user = record.get('user')
+        print(user)
+        break
 
 
 if __name__ == '__main__':
-    print(get_data())
+    data = get_data()
+    if data is not None:
+        data_to_db(data)
