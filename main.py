@@ -86,11 +86,48 @@ def get_data():
         return None
 
 
+def get_conn():
+    config = configparser.RawConfigParser()
+    config.read('configs/db.ini')
+    conn = pymysql.connect(host=config.get('database-mysql', 'host'),
+                           port=config.getint('database-mysql', 'port'),
+                           user=config.get('database-mysql', 'username'),
+                           passwd=config.get('database-mysql', 'password'),
+                           db=config.get('database-mysql', 'dbname'))
+    return conn
+
+
 def data_to_db(data):
     logging.info('数据入库')
+    conn = get_conn()
+    cur = conn.cursor()
     for record in data:
         print(record)
         user = record.get('user')
+        # 获取表/新建表：受试者基本信息
+        patient_id = user.get('uid')
+        logging.info('[原始数据受试者编号]' + str(patient_id))
+        hzbh = 105000000 + patient_id
+        logging.info('[iHealth受试者编号]' + str(hzbh))
+        cur.execute('SELECT ID FROM patient where hzbh = %s;', hzbh)
+        table_patient_id = cur.fetchone()
+        if table_patient_id is None:
+            xb = 1 if orgin[2] == '男' else 2
+            try:
+                cur.execute(
+                    'INSERT INTO patient(ID, xm, csrq, xb, sjh,gzgzh, bdgzh, hzbh, CREATE_TIME, UPDATE_TIME)'
+                    'VALUES(%s,%s,%s,%s,%s,%s,%s,%s);',
+                    (None, user.get('name'), orgin[4], xb, user.get('mobile'), 0, 0, hzbh,
+                     time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+                     time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+                logging.debug("[最新ID]" + str(cur.lastrowid))
+                logging.debug("[插入数据的ID]" + str(conn.insert_id()))
+                table_patient_id = conn.insert_id()
+                conn.commit()
+            except Exception as ex:
+                logging.error('[插入异常]' + str(ex))
+                conn.rollback()
+                break
         print(user)
         break
 
