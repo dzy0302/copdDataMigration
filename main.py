@@ -97,42 +97,47 @@ def get_conn():
     return conn
 
 
-def data_to_db(data):
-    logging.info('数据入库')
-    conn = get_conn()
-    cur = conn.cursor()
-    for record in data:
-        print(record)
-        user = record.get('user')
-        # 获取表/新建表：受试者基本信息
-        patient_id = user.get('uid')
-        logging.info('[原始数据受试者编号]' + str(patient_id))
-        hzbh = 105000000 + patient_id
-        logging.info('[iHealth受试者编号]' + str(hzbh))
-        cur.execute('SELECT ID FROM patient where hzbh = %s;', hzbh)
-        table_patient_id = cur.fetchone()
-        if table_patient_id is None:
-            xb = 1 if orgin[2] == '男' else 2
-            try:
-                cur.execute(
-                    'INSERT INTO patient(ID, xm, csrq, xb, sjh,gzgzh, bdgzh, hzbh, CREATE_TIME, UPDATE_TIME)'
-                    'VALUES(%s,%s,%s,%s,%s,%s,%s,%s);',
-                    (None, user.get('name'), orgin[4], xb, user.get('mobile'), 0, 0, hzbh,
-                     time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
-                     time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
-                logging.debug("[最新ID]" + str(cur.lastrowid))
-                logging.debug("[插入数据的ID]" + str(conn.insert_id()))
-                table_patient_id = conn.insert_id()
-                conn.commit()
-            except Exception as ex:
-                logging.error('[插入异常]' + str(ex))
-                conn.rollback()
-                break
-        print(user)
-        break
+def user_to_db(cur, user):
+    patient_id = user.get('uid')
+    hzbh = 105100000 + patient_id
+    cur.execute('SELECT ID FROM patient where hzbh = %s;', hzbh)
+    table_patient_check = cur.fetchone()
+    if table_patient_check is None:
+        try:
+            logging.info('受试者' + str(hzbh) + '基本信息入库')
+            cur.execute(
+                'INSERT INTO patient(ID, xm, zjlx, zjhm, xb, sjh, gzgzh, bdgzh, hzbh, CREATE_TIME, UPDATE_TIME)'
+                'VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
+                (None, user.get('name'), 1, user.get('id_card'), user.get('sex'), user.get('mobile'), 0, 0, str(hzbh),
+                 time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+                 time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+            table_patient_id = conn.insert_id()
+            conn.commit()
+            return table_patient_id
+        except Exception as ex:
+            logging.error('[插入patient异常]' + str(ex))
+            conn.rollback()
+            return None
+    else:
+        logging.info('受试者' + str(hzbh) + '基本信息刷新')
+        table_patient_id = table_patient_check[0]
+        return table_patient_id
 
 
 if __name__ == '__main__':
+    # 调用API，获取数据
+    logging.info('调用API，获取数据')
     data = get_data()
+    # 数据入库
+    logging.info('数据入库')
+    conn = get_conn()
+    cur = conn.cursor()
     if data is not None:
-        data_to_db(data)
+        for record in data:
+            user = record.get('user')
+            table_patient_id = user_to_db(cur, user)
+            if table_patient_id is not None:
+                print()
+    cur.close()
+    conn.close()
+    logging.info('数据同步完成，同步时间：' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
