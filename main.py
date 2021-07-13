@@ -119,12 +119,23 @@ def user_to_db(cur, user):
             conn.rollback()
             return None
     else:
-        logging.info('受试者' + str(hzbh) + '基本信息刷新')
         table_patient_id = table_patient_check[0]
-        return table_patient_id
+        try:
+            logging.info('受试者' + str(hzbh) + '基本信息刷新')
+            cur.execute(
+                'UPDATE patient SET xm = %s, zjhm = %s, xb = %s, sjh = %s, UPDATE_TIME = %s WHERE ID = %s;',
+                (user.get('name'), user.get('id_card'), user.get('sex'), user.get('mobile'),
+                 time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), table_patient_id))
+            conn.commit()
+            return table_patient_id
+        except Exception as ex:
+            logging.error('[更新patient异常]' + str(ex))
+            conn.rollback()
+            return None
 
 
 if __name__ == '__main__':
+    flag = True
     # 调用API，获取数据
     logging.info('调用API，获取数据')
     data = get_data()
@@ -138,6 +149,12 @@ if __name__ == '__main__':
             table_patient_id = user_to_db(cur, user)
             if table_patient_id is not None:
                 print()
+            else:
+                flag = False
+                break
     cur.close()
     conn.close()
-    logging.info('数据同步完成，同步时间：' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+    if flag:
+        logging.info('数据同步完成，同步完成时间：' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+    else:
+        logging.error('数据同步失败，请检查数据')
