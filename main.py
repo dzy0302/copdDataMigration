@@ -134,6 +134,29 @@ def user_to_db(cur, user):
             return None
 
 
+def common_to_db(cur, common, table_patient_id):
+    # cur.execute('SELECT ID FROM record_common2 where PATIENT_ID = %s;', table_patient_id)
+    # table_common_check = cur.fetchone()
+    # if table_common_check is None:
+    #     try:
+    #         logging.info('common表入库')
+    #         cur.execute(
+    #             'INSERT INTO patient(ID, xm, zjlx, zjhm, xb, sjh, gzgzh, bdgzh, hzbh, CREATE_TIME, UPDATE_TIME)'
+    #             'VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
+    #             (None, user.get('name'), 1, user.get('id_card'), user.get('sex'), user.get('mobile'), 0, 0, str(hzbh),
+    #              time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+    #              time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
+    #         table_patient_id = conn.insert_id()
+    #         conn.commit()
+    #         return table_patient_id
+    #     except Exception as ex:
+    #         logging.error('[插入patient异常]' + str(ex))
+    #         conn.rollback()
+    #         return None
+    # print(len(common))
+
+
+
 if __name__ == '__main__':
     flag = True
     # 调用API，获取数据
@@ -148,7 +171,8 @@ if __name__ == '__main__':
             user = record.get('user')
             table_patient_id = user_to_db(cur, user)
             if table_patient_id is not None:
-                print()
+                common = record.get('common')
+                table_common_id = common_to_db(cur, common, table_patient_id)
             else:
                 flag = False
                 break
