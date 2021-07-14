@@ -719,9 +719,9 @@ def mzf_to_db(cur, common, table_common_id):
                  common.get('CREATE_TIME') if common.get('blh') != '' else time.strftime("%Y-%m-%d %H:%M:%S",
                                                                                          time.localtime()),
                  time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), 0, table_patient_id))
-            table_common_id = conn.insert_id()
+            table_mzf_id = conn.insert_id()
             conn.commit()
-            return table_common_id
+            return table_mzf_id
         except Exception as ex:
             logging.error('[插入common异常]' + str(ex))
             conn.rollback()
