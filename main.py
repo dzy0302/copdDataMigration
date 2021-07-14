@@ -514,6 +514,11 @@ def common_to_db(cur, common, table_patient_id):
             return None
 
 
+def mzf_to_db(cur, common, table_patient_id):
+    print(common)
+    return 666
+
+
 if __name__ == '__main__':
     flag = True
     # 调用API，获取数据
@@ -532,7 +537,11 @@ if __name__ == '__main__':
                 if len(common) == 442:
                     table_common_id = common_to_db(cur=cur, common=common, table_patient_id=table_patient_id)
                     if table_common_id is not None:
-                        print(table_common_id)
+                        table_mzf_id = mzf_to_db(cur=cur, common=common, table_patient_id=table_patient_id)
+                        print(table_mzf_id)
+                        if table_common_id is None:
+                            flag = False
+                            break
                     else:
                         flag = False
                         break
