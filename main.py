@@ -516,6 +516,7 @@ def common_to_db(cur, common, table_patient_id):
 
 
 def mzf_to_db(cur, common, table_common_id):
+    logging.error(common.get('snzfqncxsj'))
     cur.execute('SELECT ID FROM record_mzf2 where COMMON_ID = %s;', table_common_id)
     table_mzf_check = cur.fetchone()
     if table_mzf_check is None:
@@ -530,9 +531,9 @@ def mzf_to_db(cur, common, table_common_id):
                 'fywzl_wchxjsc, fywzl_dxzqgkzj, fywzl_dxzqgkzjcs, fywzl_jzjz, fywzl_jzjzcs, fywzl_zyzl, fywzl_zyzlcs, '
                 'hxxtjb, hxxtjb_zqgkz, hxxtjb_zqgxc, hxxtjb_gmxby, hxxtjb_fbdy, hxxtjb_fss, hxxtjb_fjzxwh, hxxtjb_fa, '
                 'hxxtjb_smhxztzhz, hxxtjb_hxsj, hxxtjb_fjh, hxxtjb_fdmgy, hxxtjb_sc, xxgjb, xxgjb_gxy, xxgjb_gxb, '
-                'xxgjb_jxxgnbq, xxgjb_fyxxzb, xxgjb_mxxgnbq, xxgjb_fc, xxgjb_yszcdzz, xxgjb_sxzb, xxgjb_sc, nfmxtjb, '
-                'nfmxtjb_tnb, nfmxtjb_gzss, nfmxtjb_sc, xhxtjb, xhxtjb_wsgfl, xhxtjb_bm, xhxtjb_yzxcb, xhxtjb_gyh, '
-                'xhxtjb_sc, qtxtjb, qtxtjb_yyz, qtxtjb_qtbwzl, qtxtjb_sgnbq, qtxtjb_gljrza, qtxtjb_xkjx, '
+                'xxgjb_jxxgnbq, xxgjb_fyxxzb, xxgjb_mxxgnbq, xxgjb_fc, xxgjb_yszcdzz, xxgjb_sxzb, nfmxtjb, '
+                'nfmxtjb_tnb, nfmxtjb_gzss, xhxtjb, xhxtjb_wsgfl, xhxtjb_bm, xhxtjb_yzxcb, xhxtjb_gyh, '
+                'qtxtjb, qtxtjb_yyz, qtxtjb_qtbwzl, qtxtjb_sgnbq, qtxtjb_gljrza, qtxtjb_xkjx, '
                 'qtxtjb_swywygms, qtxtjb_xbss, xypc, yl, xycsnl, xyjsnl, pjmtxys, xysc, jynl, jysc, esyjc, esyjc_e14, '
                 'esyjc_a14, esyjcsj, swrlzf, mnsnqnyw, snzfqncxsj, snzfqnsyqj, zfqnfhcs, zfqnfhcs_kz, zfqnfhcs_fdmj, '
                 'zfqnfhcs_yyj, zfqnfhcs_pqs, zfqnfhpc, qtfszf, qtfszf_trq, qtfszf_mb, qtfszf_yhq, mnsnzfyw, snzfcxsj, '
@@ -563,7 +564,7 @@ def mzf_to_db(cur, common, table_common_id):
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
-                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
+                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
                 (None, table_common_id,
                  common.get('gwys_xy') if common.get('gwys_xy') != '' else None,
                  common.get('gwys_hymxtdjb') if common.get('gwys_hymxtdjb') != '' else None,
@@ -623,17 +624,17 @@ def mzf_to_db(cur, common, table_common_id):
                  common.get('xxgjb_fc') if common.get('xxgjb_fc') != '' else None,
                  common.get('xxgjb_yszcdzz') if common.get('xxgjb_yszcdzz') != '' else None,
                  common.get('xxgjb_sxzb') if common.get('xxgjb_sxzb') != '' else None,
-                 common.get('xxgjb_sc') if common.get('xxgjb_sc') != '' else None,
+                 # common.get('xxgjb_sc') if common.get('xxgjb_sc') != '' else None,
                  common.get('nfmxtjb') if common.get('nfmxtjb') != '' else None,
                  common.get('nfmxtjb_tnb') if common.get('nfmxtjb_tnb') != '' else None,
                  common.get('nfmxtjb_gzss') if common.get('nfmxtjb_gzss') != '' else None,
-                 common.get('nfmxtjb_sc') if common.get('nfmxtjb_sc') != '' else None,
+                 # common.get('nfmxtjb_sc') if common.get('nfmxtjb_sc') != '' else None,
                  common.get('xhxtjb') if common.get('xhxtjb') != '' else None,
                  common.get('xhxtjb_wsgfl') if common.get('xhxtjb_wsgfl') != '' else None,
                  common.get('xhxtjb_bm') if common.get('xhxtjb_bm') != '' else None,
                  common.get('xhxtjb_yzxcb') if common.get('xhxtjb_yzxcb') != '' else None,
                  common.get('xhxtjb_gyh') if common.get('xhxtjb_gyh') != '' else None,
-                 common.get('xhxtjb_sc') if common.get('xhxtjb_sc') != '' else None,
+                 # common.get('xhxtjb_sc') if common.get('xhxtjb_sc') != '' else None,
                  common.get('qtxtjb') if common.get('qtxtjb') != '' else None,
                  common.get('qtxtjb_yyz') if common.get('qtxtjb_yyz') != '' else None,
                  common.get('qtxtjb_qtbwzl') if common.get('qtxtjb_qtbwzl') != '' else None,
@@ -854,7 +855,7 @@ def mzf_to_db(cur, common, table_common_id):
             conn.commit()
             return table_mzf_id
         except Exception as ex:
-            logging.error('[插入common异常]' + str(ex))
+            logging.error('[插入mzf异常]' + str(ex))
             conn.rollback()
             return None
     else:
@@ -1070,7 +1071,6 @@ if __name__ == '__main__':
                         if table_mzf_id is None:
                             flag = False
                             break
-                        print(table_mzf_id)
                     else:
                         flag = False
                         break
