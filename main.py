@@ -516,7 +516,6 @@ def common_to_db(cur, common, table_patient_id):
 
 
 def mzf_to_db(cur, common, table_common_id):
-    logging.error(common.get('mnfcjcys'))
     cur.execute('SELECT ID FROM record_mzf2 where COMMON_ID = %s;', table_common_id)
     table_mzf_check = cur.fetchone()
     if table_mzf_check is None:
@@ -527,8 +526,8 @@ def mzf_to_db(cur, common, table_common_id):
                 'gwys_ffhxhxdgr, copdzd, ywzl, ywzl_dyxrzqgkzjsaba, ywzl_dyxrzqgkzjsama, ywzl_dyxrzqgkzjlaba, '
                 'ywzl_dyxrzqgkzjlama, ywzl_dyxrzqgkzjsfgl, ywzl_xrjssfgl, ywzl_lhxrzjicslaba, ywzl_lhxrzjicslabalama, '
                 'ywzl_lhxrzjlabalama, ywzl_lhxrzjsfgl, ywzl_kfjssfgl, ywzl_kfcjlsfgl, ywzl_htlywsfgl, fywzl, fywzl_jy, '
-                'fywzl_ywjzym, fywzl_cjzlgym, fywzl_cjzfyym, fywzl_ywfkfzl, fywzl_ywjtyl, fywzl_jtylsc, fywzl_ywwchxj, '
-                'fywzl_wchxjsc, fywzl_dxzqgkzj, fywzl_dxzqgkzjcs, fywzl_jzjz, fywzl_jzjzcs, fywzl_zyzl, fywzl_zyzlcs, '
+                'fywzl_ywjzym, fywzl_cjzlgym, fywzl_cjzfyym, fywzl_ywfkfzl, fywzl_ywjtyl, fywzl_ywwchxj, '
+                'fywzl_wchxjsc, fywzl_dxzqgkzj, fywzl_jzjz, fywzl_jzjzcs, fywzl_zyzl, fywzl_zyzlcs, '
                 'hxxtjb, hxxtjb_zqgkz, hxxtjb_zqgxc, hxxtjb_gmxby, hxxtjb_fbdy, hxxtjb_fss, hxxtjb_fjzxwh, hxxtjb_fa, '
                 'hxxtjb_smhxztzhz, hxxtjb_hxsj, hxxtjb_fjh, hxxtjb_fdmgy, hxxtjb_sc, xxgjb, xxgjb_gxy, xxgjb_gxb, '
                 'xxgjb_jxxgnbq, xxgjb_fyxxzb, xxgjb_mxxgnbq, xxgjb_fc, xxgjb_yszcdzz, xxgjb_sxzb, nfmxtjb, '
@@ -564,7 +563,7 @@ def mzf_to_db(cur, common, table_common_id):
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
-                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
+                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
                 (None, table_common_id,
                  common.get('gwys_xy') if common.get('gwys_xy') != '' else None,
                  common.get('gwys_hymxtdjb') if common.get('gwys_hymxtdjb') != '' else None,
@@ -593,11 +592,11 @@ def mzf_to_db(cur, common, table_common_id):
                  common.get('fywzl_cjzfyym') if common.get('fywzl_cjzfyym') != '' else None,
                  common.get('fywzl_ywfkfzl') if common.get('fywzl_ywfkfzl') != '' else None,
                  common.get('fywzl_ywjtyl') if common.get('fywzl_ywjtyl') != '' else None,
-                 common.get('fywzl_jtylsc') if common.get('fywzl_jtylsc') != '' else None,
+                 # common.get('fywzl_jtylsc') if common.get('fywzl_jtylsc') != '' else None,
                  common.get('fywzl_ywwchxj') if common.get('fywzl_ywwchxj') != '' else None,
                  common.get('fywzl_wchxjsc') if common.get('fywzl_wchxjsc') != '' else None,
                  common.get('fywzl_dxzqgkzj') if common.get('fywzl_dxzqgkzj') != '' else None,
-                 common.get('fywzl_dxzqgkzjcs') if common.get('fywzl_dxzqgkzjcs') != '' else None,
+                 # common.get('fywzl_dxzqgkzjcs') if common.get('fywzl_dxzqgkzjcs') != '' else None,
                  common.get('fywzl_jzjz') if common.get('fywzl_jzjz') != '' else None,
                  common.get('fywzl_jzjzcs') if common.get('fywzl_jzjzcs') != '' else None,
                  common.get('fywzl_zyzl') if common.get('fywzl_zyzl') != '' else None,
