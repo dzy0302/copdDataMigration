@@ -523,7 +523,7 @@ def mzf_to_db(cur, common, table_common_id):
             logging.info('mzf表入库')
             cur.execute(
                 'INSERT INTO record_mzf2(ID, COMMON_ID, gwys_xy, gwys_hymxtdjb, gwys_jzzkqwryzdq, gwys_csjcfcgz, '
-                'gwys_ffhxhxdgr, copdzd, ywzl, ywzl_dyxrzqgkzjsaba, ywzl_dyxrzqgkzjsana, ywzl_dyxrzqgkzjlaba, '
+                'gwys_ffhxhxdgr, copdzd, ywzl, ywzl_dyxrzqgkzjsaba, ywzl_dyxrzqgkzjsama, ywzl_dyxrzqgkzjlaba, '
                 'ywzl_dyxrzqgkzjlama, ywzl_dyxrzqgkzjsfgl, ywzl_xrjssfgl, ywzl_lhxrzjicslaba, ywzl_lhxrzjicslabalama, '
                 'ywzl_lhxrzjlabalama, ywzl_lhxrzjsfgl, ywzl_kfjssfgl, ywzl_kfcjlsfgl, ywzl_htlywsfgl, fywzl, fywzl_jy, '
                 'fywzl_ywjzym, fywzl_cjzlgym, fywzl_cjzfyym, fywzl_ywfkfzl, fywzl_ywjtyl, fywzl_jtylsc, fywzl_ywwchxj, '
