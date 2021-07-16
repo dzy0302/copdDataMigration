@@ -1246,3 +1246,5 @@ if __name__ == '__main__':
         logging.info('数据同步完成，同步完成时间：' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
     else:
         logging.error('数据同步失败，请检查数据')
+    print('程序10秒后自动退出，可手动关闭窗口')
+    time.sleep(10)
