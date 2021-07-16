@@ -5,7 +5,6 @@ import pymysql
 import time
 import logging
 import configparser
-import datetime
 import requests
 import hashlib
 import json
@@ -352,7 +351,8 @@ def common_to_db(cur, common, table_patient_id):
                     'tz_lqxwhs = %s, tz_sstt = %s, tz_msha = %s, tz_hyq = %s, tz_jw = %s, tz_kcyspa = %s, '
                     'tz_qxdc = %s, tz_jsjz = %s, tz_dcsg = %s, tz_ysjx = %s, tz_rfzt = %s, tz_wgtq = %s, '
                     'tz_yhywg = %s, tz_dpt = %s, tz_lbt = %s, tz_kc = %s, tz_rygm = %s, tz_ryxmz = %s, tz_pfgmzd = %s, '
-                    'tz_zh = %s, CREATE_TIME = %s, UPDATE_TIME = %s WHERE ID = %s;',
+                    'tz_zh = %s, CREATE_TIME = %s, UPDATE_TIME = %s WHERE ID = %s AND SUBJECT_ID = 105 '
+                    'AND ORG_ID = 125;',
                     (
                         'MZF' if common.get('DISEASE_CODE') == 3 else '',
                         common.get('blh') if common.get('blh') != '' else None,
