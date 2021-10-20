@@ -32,15 +32,15 @@ logger.addHandler(fh)
 logger.addHandler(ch)
 
 
-def isVaildDate(date):
-    try:
-        if ":" in date:
-            time.strptime(date, "%Y-%m-%d %H:%M:%S")
-        else:
-            time.strptime(date, "%Y-%m-%d")
-        return True
-    except:
-        return False
+# def isVaildDate(date):
+#     try:
+#         if ":" in date:
+#             time.strptime(date, "%Y-%m-%d %H:%M:%S")
+#         else:
+#             time.strptime(date, "%Y-%m-%d")
+#         return True
+#     except:
+#         return False
 
 
 def request_api(page):
@@ -884,14 +884,15 @@ def mzf_to_db(cur, common, table_common_id):
                     'ywzl_lhxrzjicslabalama = %s, ywzl_lhxrzjlabalama = %s, ywzl_lhxrzjsfgl = %s, '
                     'ywzl_kfjssfgl = %s, ywzl_kfcjlsfgl = %s, ywzl_htlywsfgl = %s, fywzl = %s, fywzl_jy = %s, '
                     'fywzl_ywjzym = %s, fywzl_cjzlgym = %s, fywzl_cjzfyym = %s, fywzl_ywfkfzl = %s, fywzl_ywjtyl = %s, '
-                    'fywzl_ywwchxj = %s, fywzl_wchxjsc = %s, fywzl_dxzqgkzj = %s, fywzl_jzjz = %s, fywzl_jzjzcs = %s, '
-                    'fywzl_zyzl = %s, fywzl_zyzlcs = %s, hxxtjb = %s, hxxtjb_zqgkz = %s, hxxtjb_zqgxc = %s, '
-                    'hxxtjb_gmxby = %s, hxxtjb_fbdy = %s, hxxtjb_fss = %s, hxxtjb_fjzxwh = %s, hxxtjb_fa = %s, '
-                    'hxxtjb_smhxztzhz = %s, hxxtjb_hxsj = %s, hxxtjb_fjh = %s, hxxtjb_fdmgy = %s, hxxtjb_sc = %s, '
-                    'xxgjb = %s, xxgjb_gxy = %s, xxgjb_gxb = %s, xxgjb_jxxgnbq = %s, xxgjb_fyxxzb = %s, '
-                    'xxgjb_mxxgnbq = %s, xxgjb_fc = %s, xxgjb_yszcdzz = %s, xxgjb_sxzb = %s, nfmxtjb = %s, '
-                    'nfmxtjb_tnb = %s, nfmxtjb_gzss = %s, xhxtjb = %s, xhxtjb_wsgfl = %s, xhxtjb_bm = %s, '
-                    'xhxtjb_yzxcb = %s, xhxtjb_gyh = %s, qtxtjb = %s, qtxtjb_yyz = %s, qtxtjb_qtbwzl = %s, '
+                    'fywzl_jtylsc = %s, fywzl_ywwchxj = %s, fywzl_wchxjsc = %s, fywzl_dxzqgkzj = %s, '
+                    'fywzl_dxzqgkzjcs = %s, fywzl_jzjz = %s, fywzl_jzjzcs = %s, fywzl_zyzl = %s, fywzl_zyzlcs = %s, '
+                    'hxxtjb = %s, hxxtjb_zqgkz = %s, hxxtjb_zqgxc = %s, hxxtjb_gmxby = %s, hxxtjb_fbdy = %s, '
+                    'hxxtjb_fss = %s, hxxtjb_fjzxwh = %s, hxxtjb_fa = %s, hxxtjb_smhxztzhz = %s, hxxtjb_hxsj = %s, '
+                    'hxxtjb_fjh = %s, hxxtjb_fdmgy = %s, hxxtjb_sc = %s, xxgjb = %s, xxgjb_gxy = %s, xxgjb_gxb = %s, '
+                    'xxgjb_jxxgnbq = %s, xxgjb_fyxxzb = %s, xxgjb_mxxgnbq = %s, xxgjb_fc = %s, xxgjb_yszcdzz = %s, '
+                    'xxgjb_sxzb = %s, xxgjb_sc = %s, nfmxtjb = %s, nfmxtjb_tnb = %s, nfmxtjb_gzss = %s, '
+                    'nfmxtjb_sc = %s, xhxtjb = %s, xhxtjb_wsgfl = %s, xhxtjb_bm = %s, xhxtjb_yzxcb = %s, '
+                    'xhxtjb_gyh = %s, xhxtjb_sc = %s, qtxtjb = %s, qtxtjb_yyz = %s, qtxtjb_qtbwzl = %s, '
                     'qtxtjb_sgnbq = %s, qtxtjb_gljrza = %s, qtxtjb_xkjx = %s, qtxtjb_swywygms = %s, qtxtjb_xbss = %s, '
                     'xypc = %s, yl = %s, xycsnl = %s, xyjsnl = %s, pjmtxys = %s, xysc = %s, jynl = %s, jysc = %s, '
                     'esyjc = %s, esyjc_e14 = %s, esyjc_a14 = %s, esyjcsj = %s, swrlzf = %s, mnsnqnyw = %s, '
@@ -899,13 +900,14 @@ def mzf_to_db(cur, common, table_common_id):
                     'zfqnfhcs_yyj = %s, zfqnfhcs_pqs = %s, zfqnfhpc = %s, qtfszf = %s, qtfszf_trq = %s, '
                     'qtfszf_mb = %s, qtfszf_yhq = %s, mnsnzfyw = %s, snzfcxsj = %s, snzfsyqj = %s, snzffhcs = %s, '
                     'snzffhcs_kz = %s, snzffhcs_fdmj = %s, snzffhcs_yyj = %s, snzffhcs_pqs = %s, snzffhcsqt = %s, '
-                    'snzffhpc = %s, fcjc = %s, mnfcjcys = %s, fcjcfhcs = %s, fcjcfhcs_kz = %s, fcjcfhcs_fdmj = %s, '
-                    'fcjcfhcs_fhf = %s, fcjcfhcs_fctk = %s, fcjcfhcs_qxz = %s, fcjcfhpc = %s, ydqtjc = %s, '
-                    'mnydqtjcys = %s, ydqtjccxsj = %s, ydqtjcfhcs = %s, ydqtjcfhcs_kz = %s, ydqtjcfhcs_fdmj = %s, '
-                    'ydqtjcfhcs_fhf = %s, ydqtjcfhcs_fctk = %s, ydqtjcfhcs_qxz = %s, ydqtjcfhpc = %s, zjskljc = %s, '
-                    'mnzjskljcys = %s, zjskljccxsj = %s, zjskljcfhcs = %s, zjskljcfhcs_kz = %s, zjskljcfhcs_fdmj = %s, '
-                    'zjskljcfhcs_fhf = %s, zjskljcfhcs_fctk = %s, zjskljcfhcs_qxz = %s, zjskljcfhpc = %s, ydkljc = %s, '
-                    'mnydkljcys = %s, ydkljccxsj = %s, ydkljcfhcs = %s, ydkljcfhcs_kz = %s, ydkljcfhcs_fdmz = %s, '
+                    'snzffhpc = %s, fcjc = %s, mnfcjcys = %s, fcjccxsj = %s, fcjcfhcs = %s, fcjcfhcs_kz = %s, '
+                    'fcjcfhcs_fdmj = %s, fcjcfhcs_fhf = %s, fcjcfhcs_fctk = %s, fcjcfhcs_qxz = %s, fcjcfhpc = %s, '
+                    'ydqtjc = %s, mnydqtjcys = %s, ydqtjccxsj = %s, ydqtjcfhcs = %s, ydqtjcfhcs_kz = %s, '
+                    'ydqtjcfhcs_fdmj = %s, ydqtjcfhcs_fhf = %s, ydqtjcfhcs_fctk = %s, ydqtjcfhcs_qxz = %s, '
+                    'ydqtjcfhpc = %s, zjskljc = %s, mnzjskljcys = %s, zjskljccxsj = %s, zjskljcfhcs = %s, '
+                    'zjskljcfhcs_kz = %s, zjskljcfhcs_fdmj = %s, zjskljcfhcs_fhf = %s, zjskljcfhcs_fctk = %s, '
+                    'zjskljcfhcs_qxz = %s, zjskljcfhpc = %s, ydkljc = %s, mnydkljcys = %s, ydkljccxsj = %s, '
+                    'ydkljcfhcs = %s, ydkljcfhcs_kz = %s, ydkljcfhcs_fdmz = %s, '
                     'ydkljcfhcs_fhf = %s, ydkljcfhcs_fctk = %s, ydkljcfhcs_qxz = %s, ydkljcfhpc = %s, cakljc = %s, '
                     'mncakljcys = %s, cakljccxsj = %s, cakljcfhcs = %s, cakljcfhcs_kz = %s, cakljcfhcs_fdmz = %s, '
                     'cakljcfhcs_fhf = %s, cakljcfhcs_fctk = %s, cakljcfhcs_qxz = %s, cakljcfhpc = %s, ynffmxqdjb = %s, '
