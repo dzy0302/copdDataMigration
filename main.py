@@ -578,7 +578,7 @@ def mzf_to_db(cur, common, table_common_id):
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
-                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
+                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
                 (None, table_common_id,
                  common.get('gwys_xy') if common.get('gwys_xy') != '' else None,
                  common.get('gwys_hymxtdjb') if common.get('gwys_hymxtdjb') != '' else None,
@@ -1235,27 +1235,27 @@ if __name__ == '__main__':
     cur = conn.cursor()
     if data is not None:
         for record in data:
-            if record.get('user').get('name') == '翁文梅':
-                print(record)
-                user = record.get('user')
-                table_patient_id = user_to_db(cur=cur, user=user)
-                if table_patient_id is not None:
-                    common = record.get('common')
-                    if len(common) == 442:
-                        table_common_id = common_to_db(cur=cur, common=common, table_patient_id=table_patient_id)
-                        if table_common_id is not None:
-                            table_mzf_id = mzf_to_db(cur=cur, common=common, table_common_id=table_common_id)
-                            if table_mzf_id is None:
-                                flag = False
-                                break
-                        else:
+            # if record.get('user').get('name') == '翁文梅':
+            # print(record)
+            user = record.get('user')
+            table_patient_id = user_to_db(cur=cur, user=user)
+            if table_patient_id is not None:
+                common = record.get('common')
+                if len(common) == 452:
+                    table_common_id = common_to_db(cur=cur, common=common, table_patient_id=table_patient_id)
+                    if table_common_id is not None:
+                        table_mzf_id = mzf_to_db(cur=cur, common=common, table_common_id=table_common_id)
+                        if table_mzf_id is None:
                             flag = False
                             break
                     else:
-                        logging.warning('[数据长度异常，非442]该数据长度为：' + str(len(common)))
+                        flag = False
+                        break
                 else:
-                    flag = False
-                    break
+                    logging.warning('[数据长度异常，非452]该数据长度为：' + str(len(common)))
+            else:
+                flag = False
+                break
     cur.close()
     conn.close()
     if flag:
