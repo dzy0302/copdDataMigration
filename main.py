@@ -153,7 +153,7 @@ def common_to_db(cur, common, table_patient_id):
             cur.execute(
                 'INSERT INTO record_common2(ID, BLLX, SUBJECT_ID, DISEASE_CODE, yljg_bh, yljg_mc, bscjrq, blh, nl, xingb, '
                 'csrq, zy, zy_qt, sg, tz, whcd, shent, st_fz, st_zw, st_hm, st_ss, st_hh, st_dm, ms_qk, wn, sm, '
-                'sm_rskn, sm_yx, sm_dm, sm_ss, sm_hz, sm_qt, xb, xb_cs, db, xy, xy_mtpjl, xy_sc, jy, jy_sc, '
+                'sm_rskn, sm_yx, sm_dm, sm_ss, sm_hz, sm_qt, xb, xb_cs, db, db_cs, db_zdgy, db_zdtjbt, db_zdnnbs, db_zdzrbcx, xy, xy_mtpjl, xy_sc, jy, jy_sc, '
                 'gxy_bs, gxy_bc, gxb_jzs, gxb_bc, tnb_bs, tnb_bc, gzss_bs, gzss_bc, mxzsxfb_bs, fss_bs, wsgfl_bs, '
                 'bxb_js, xxb_js, xhdb_hl, ssxlxb_js, hxb_js, sx, sx_ls, sx_ns, sx_pds, sx_sxs, sx_chs, ss_hs, '
                 'ss_qzs, ts, tz_bot, tz_ht, tz_nt, tz_bat, tz_rt, tz_zt, sx_mlxt, mz_f, mz_che, mz_chi, mz_sh, '
@@ -171,7 +171,7 @@ def common_to_db(cur, common, table_patient_id):
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
-                '%s,%s,%s,%s,%s);',
+                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
                 (None, 0, 105, 'MZF' if common.get('DISEASE_CODE') == 3 else '', 125, '浙江省中医院',
                  common.get('bscjrq') if common.get('bscjrq') != '' else None,
                  common.get('blh') if common.get('blh') != '' else None,
@@ -202,6 +202,11 @@ def common_to_db(cur, common, table_patient_id):
                  common.get('xb') if common.get('xb') != '' else None,
                  common.get('xb_cs') if common.get('xb_cs') != '' else None,
                  common.get('db') if common.get('db') != '' else None,
+                 common.get('db_cs') if common.get('db_cs') != '' else None,
+                 common.get('db_zdgy') if common.get('db_zdgy') != '' else None,
+                 common.get('db_zdtjbt') if common.get('db_zdtjbt') != '' else None,
+                 common.get('db_zdnnbs') if common.get('db_zdnnbs') != '' else None,
+                 common.get('db_zdzrbcx') if common.get('db_zdzrbcx') != '' else None,
                  common.get('xy') if common.get('xy') != '' else None,
                  common.get('xy_mtpjl') if common.get('xy_mtpjl') != '' else None,
                  common.get('xy_sc') if common.get('xy_sc') != '' else None,
@@ -345,7 +350,7 @@ def common_to_db(cur, common, table_patient_id):
                     'UPDATE record_common2 SET DISEASE_CODE = %s, bscjrq = %s, blh = %s, nl = %s, xingb = %s, '
                     'csrq = %s, zy = %s, zy_qt = %s, sg = %s, tz = %s, whcd = %s, shent = %s, st_fz = %s, st_zw = %s, '
                     'st_hm = %s, st_ss = %s, st_hh = %s, st_dm = %s, ms_qk = %s, wn = %s, sm = %s, sm_rskn = %s, '
-                    'sm_yx = %s, sm_dm = %s, sm_ss = %s, sm_hz = %s, sm_qt = %s, xb = %s, xb_cs = %s, db = %s, '
+                    'sm_yx = %s, sm_dm = %s, sm_ss = %s, sm_hz = %s, sm_qt = %s, xb = %s, xb_cs = %s, db = %s, db_cs = %s, db_zdgy = %s, db_zdtjbt = %s, db_zdnnbs = %s, db_zdzrbcx = %s, '
                     'xy = %s, xy_mtpjl = %s, xy_sc = %s, jy = %s, jy_sc = %s, gxy_bs = %s, gxy_bc = %s, gxb_jzs = %s, '
                     'gxb_bc = %s, tnb_bs = %s, tnb_bc = %s, gzss_bs = %s, gzss_bc = %s, mxzsxfb_bs = %s, fss_bs = %s, '
                     'wsgfl_bs = %s, bxb_js = %s, xxb_js = %s, xhdb_hl = %s, ssxlxb_js = %s, hxb_js = %s, sx = %s, '
@@ -397,6 +402,11 @@ def common_to_db(cur, common, table_patient_id):
                         common.get('xb') if common.get('xb') != '' else None,
                         common.get('xb_cs') if common.get('xb_cs') != '' else None,
                         common.get('db') if common.get('db') != '' else None,
+                        common.get('db_cs') if common.get('db_cs') != '' else None,
+                        common.get('db_zdgy') if common.get('db_zdgy') != '' else None,
+                        common.get('db_zdtjbt') if common.get('db_zdtjbt') != '' else None,
+                        common.get('db_zdnnbs') if common.get('db_zdnnbs') != '' else None,
+                        common.get('db_zdzrbcx') if common.get('db_zdzrbcx') != '' else None,
                         common.get('xy') if common.get('xy') != '' else None,
                         common.get('xy_mtpjl') if common.get('xy_mtpjl') != '' else None,
                         common.get('xy_sc') if common.get('xy_sc') != '' else None,
