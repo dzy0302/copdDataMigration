@@ -151,7 +151,7 @@ def common_to_db(cur, common, table_patient_id):
         try:
             logging.info('common表入库')
             cur.execute(
-                'INSERT INTO record_common2(ID, BLLX, SUBJECT_ID, DISEASE_CODE, yljg_bh, yljg_mc, blh, nl, xingb, '
+                'INSERT INTO record_common2(ID, BLLX, SUBJECT_ID, DISEASE_CODE, yljg_bh, yljg_mc, bscjrq, blh, nl, xingb, '
                 'csrq, zy, zy_qt, sg, tz, whcd, shent, st_fz, st_zw, st_hm, st_ss, st_hh, st_dm, ms_qk, wn, sm, '
                 'sm_rskn, sm_yx, sm_dm, sm_ss, sm_hz, sm_qt, xb, xb_cs, db, xy, xy_mtpjl, xy_sc, jy, jy_sc, '
                 'gxy_bs, gxy_bc, gxb_jzs, gxb_bc, tnb_bs, tnb_bc, gzss_bs, gzss_bc, mxzsxfb_bs, fss_bs, wsgfl_bs, '
@@ -173,6 +173,7 @@ def common_to_db(cur, common, table_patient_id):
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s);',
                 (None, 0, 105, 'MZF' if common.get('DISEASE_CODE') == 3 else '', 125, '浙江省中医院',
+                 common.get('bscjrq') if common.get('bscjrq') != '' else None,
                  common.get('blh') if common.get('blh') != '' else None,
                  common.get('nl') if common.get('nl') != '' else None,
                  common.get('xingb') if common.get('xingb') != '' else None,
@@ -341,7 +342,7 @@ def common_to_db(cur, common, table_patient_id):
             try:
                 logging.info('common表刷新')
                 cur.execute(
-                    'UPDATE record_common2 SET DISEASE_CODE = %s, blh = %s, nl = %s, xingb = %s, '
+                    'UPDATE record_common2 SET DISEASE_CODE = %s, bscjrq = %s, blh = %s, nl = %s, xingb = %s, '
                     'csrq = %s, zy = %s, zy_qt = %s, sg = %s, tz = %s, whcd = %s, shent = %s, st_fz = %s, st_zw = %s, '
                     'st_hm = %s, st_ss = %s, st_hh = %s, st_dm = %s, ms_qk = %s, wn = %s, sm = %s, sm_rskn = %s, '
                     'sm_yx = %s, sm_dm = %s, sm_ss = %s, sm_hz = %s, sm_qt = %s, xb = %s, xb_cs = %s, db = %s, '
@@ -367,6 +368,7 @@ def common_to_db(cur, common, table_patient_id):
                     'AND ORG_ID = 125;',
                     (
                         'MZF' if common.get('DISEASE_CODE') == 3 else '',
+                        common.get('bscjrq') if common.get('bscjrq') != '' else None,
                         common.get('blh') if common.get('blh') != '' else None,
                         common.get('nl') if common.get('nl') != '' else None,
                         common.get('xingb') if common.get('xingb') != '' else None,
