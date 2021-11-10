@@ -155,7 +155,7 @@ def common_to_db(cur, common, table_patient_id):
                 'csrq, zy, zy_qt, sg, tz, whcd, shent, st_fz, st_zw, st_hm, st_ss, st_hh, st_dm, ms_qk, wn, sm, '
                 'sm_rskn, sm_yx, sm_dm, sm_ss, sm_hz, sm_qt, xb, xb_cs, db, db_cs, db_zdgy, db_zdtjbt, db_zdnnbs, db_zdzrbcx, xy, xy_mtpjl, xy_sc, jy, jy_sc, '
                 'gxy_bs, gxy_bc, gxb_jzs, gxb_bc, tnb_bs, tnb_bc, gzss_bs, gzss_bc, mxzsxfb_bs, fss_bs, wsgfl_bs, '
-                'bxb_js, xxb_js, xhdb_hl, ssxlxb_js, hxb_js, sx, sx_ls, sx_ns, sx_pds, sx_sxs, sx_chs, ss_hs, '
+                'bxb_js, xxb_js, xhdb_hl, ssxlxb_js, hxb_js, sx, sx_ls, sx_ns, sx_pds, sx_sxs, st_wxs, sx_chs, ss_hs, '
                 'ss_qzs, ts, tz_bot, tz_ht, tz_nt, tz_bat, tz_rt, tz_zt, sx_mlxt, mz_f, mz_che, mz_chi, mz_sh, '
                 'mz_h, mz_se, mz_j, mz_xia, mz_xi, mz_d, mz_yl, mz_wl, tz_phz, tz_qxz, tz_yaxz, tz_yixz, tz_tsz, '
                 'tz_srz, tz_xyz, tz_qyz, tz_tbz, tz_jlcp, tz_ypf, tz_sydrwl, tz_sblhli, tz_xmbl, tz_nsyhjbh, '
@@ -171,7 +171,7 @@ def common_to_db(cur, common, table_patient_id):
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
-                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
+                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
                 (None, 0, 105, 'MZF' if common.get('DISEASE_CODE') == 3 else '', 125, '浙江省中医院',
                  common.get('bscjrq') if common.get('bscjrq') != '' else None,
                  common.get('blh') if common.get('blh') != '' else None,
@@ -354,7 +354,7 @@ def common_to_db(cur, common, table_patient_id):
                     'xy = %s, xy_mtpjl = %s, xy_sc = %s, jy = %s, jy_sc = %s, gxy_bs = %s, gxy_bc = %s, gxb_jzs = %s, '
                     'gxb_bc = %s, tnb_bs = %s, tnb_bc = %s, gzss_bs = %s, gzss_bc = %s, mxzsxfb_bs = %s, fss_bs = %s, '
                     'wsgfl_bs = %s, bxb_js = %s, xxb_js = %s, xhdb_hl = %s, ssxlxb_js = %s, hxb_js = %s, sx = %s, '
-                    'sx_ls = %s, sx_ns = %s, sx_pds = %s, sx_sxs = %s, sx_chs = %s, ss_hs = %s, ss_qzs = %s, ts = %s, '
+                    'sx_ls = %s, sx_ns = %s, sx_pds = %s, sx_sxs = %s, st_wxs = %s, sx_chs = %s, ss_hs = %s, ss_qzs = %s, ts = %s, '
                     'tz_bot = %s, tz_ht = %s, tz_nt = %s, tz_bat = %s, tz_rt = %s, tz_zt = %s, sx_mlxt = %s, '
                     'mz_f = %s, mz_che = %s, mz_chi = %s, mz_sh = %s, mz_h = %s, mz_se = %s, mz_j = %s, mz_xia = %s, '
                     'mz_xi = %s, mz_d = %s, mz_yl = %s, mz_wl = %s, tz_phz = %s, tz_qxz = %s, tz_yaxz = %s, '
@@ -433,6 +433,7 @@ def common_to_db(cur, common, table_patient_id):
                         common.get('sx_ns') if common.get('sx_ns') != '' else None,
                         common.get('sx_pds') if common.get('sx_pds') != '' else None,
                         common.get('sx_sxs') if common.get('sx_sxs') != '' else None,
+                        common.get('st_wxs') if common.get('st_wxs') != '' else None,
                         common.get('sx_chs') if common.get('sx_chs') != '' else None,
                         common.get('ss_hs') if common.get('ss_hs') != '' else None,
                         common.get('ss_qzs') if common.get('ss_qzs') != '' else None,
