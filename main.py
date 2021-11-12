@@ -233,6 +233,7 @@ def common_to_db(cur, common, table_patient_id):
                  common.get('sx_ns') if common.get('sx_ns') != '' else None,
                  common.get('sx_pds') if common.get('sx_pds') != '' else None,
                  common.get('sx_sxs') if common.get('sx_sxs') != '' else None,
+                 common.get('st_wxs') if common.get('st_wxs') != '' else None,
                  common.get('sx_chs') if common.get('sx_chs') != '' else None,
                  common.get('ss_hs') if common.get('ss_hs') != '' else None,
                  common.get('ss_qzs') if common.get('ss_qzs') != '' else None,
@@ -881,6 +882,7 @@ def mzf_to_db(cur, common, table_common_id):
             return table_mzf_id
         except Exception as ex:
             logging.error('[插入mzf异常]' + str(ex))
+            print(common)
             conn.rollback()
             return None
     else:
