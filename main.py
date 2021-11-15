@@ -553,7 +553,7 @@ def mzf_to_db(cur, common, table_common_id):
             logging.info('mzf表入库')
             cur.execute(
                 'INSERT INTO record_mzf2(ID, COMMON_ID, gwys_xy, gwys_hymxtdjb, gwys_ymfzjzs, gwys_jzzkqwryzdq, gwys_csjcfcgz, '
-                'gwys_ffhxhxdgr, copdzd, ywzl, ywzl_dyxrzqgkzjsaba, ywzl_dyxrzqgkzjsama, ywzl_dyxrzqgkzjlaba, '
+                'gwys_ffhxhxdgr, gwys_jzzqhhldq, gwys_wssaqf, gwys_yyzkjc, copdzd, ywzl, ywzl_dyxrzqgkzjsaba, ywzl_dyxrzqgkzjsama, ywzl_dyxrzqgkzjlaba, '
                 'ywzl_dyxrzqgkzjlama, ywzl_dyxrzqgkzjsfgl, ywzl_xrjssfgl, ywzl_lhxrzjicslaba, ywzl_lhxrzjicslabalama, '
                 'ywzl_lhxrzjlabalama, ywzl_lhxrzjsfgl, ywzl_kfjssfgl, ywzl_kfcjlsfgl, ywzl_htlywsfgl, fywzl, fywzl_jy, '
                 'fywzl_ywjzym, fywzl_cjzlgym, fywzl_cjzfyym, fywzl_ywfkfzl, fywzl_ywjtyl, fywzl_jtylsc, fywzl_ywwchxj, '
@@ -593,7 +593,7 @@ def mzf_to_db(cur, common, table_common_id):
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
-                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
+                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
                 (None, table_common_id,
                  common.get('gwys_xy') if common.get('gwys_xy') != '' else None,
                  common.get('gwys_hymxtdjb') if common.get('gwys_hymxtdjb') != '' else None,
@@ -601,6 +601,9 @@ def mzf_to_db(cur, common, table_common_id):
                  common.get('gwys_jzzkqwryzdq') if common.get('gwys_jzzkqwryzdq') != '' else None,
                  common.get('gwys_csjcfcgz') if common.get('gwys_csjcfcgz') != '' else None,
                  common.get('gwys_ffhxhxdgr') if common.get('gwys_ffhxhxdgr') != '' else None,
+                 common.get('gwys_jzzqhhldq') if common.get('gwys_jzzqhhldq') != '' else None,
+                 common.get('gwys_wssaqf') if common.get('gwys_wssaqf') != '' else None,
+                 common.get('gwys_yyzkjc') if common.get('gwys_yyzkjc') != '' else None,
                  common.get('copdzd') if common.get('copdzd') != '' else None,
                  common.get('ywzl') if common.get('ywzl') != '' else None,
                  common.get('ywzl_dyxrzqgkzjsaba') if common.get('ywzl_dyxrzqgkzjsaba') != '' else None,
@@ -895,7 +898,7 @@ def mzf_to_db(cur, common, table_common_id):
                 logging.info('mzf表刷新')
                 cur.execute(
                     'UPDATE record_mzf2 SET gwys_xy = %s, gwys_hymxtdjb = %s, gwys_ymfzjzs = %s, gwys_jzzkqwryzdq = %s, '
-                    'gwys_csjcfcgz = %s, gwys_ffhxhxdgr = %s, copdzd = %s, ywzl = %s, ywzl_dyxrzqgkzjsaba = %s, '
+                    'gwys_csjcfcgz = %s, gwys_ffhxhxdgr = %s, gwys_jzzqhhldq = %s, gwys_wssaqf = %s, gwys_yyzkjc = %s, copdzd = %s, ywzl = %s, ywzl_dyxrzqgkzjsaba = %s, '
                     'ywzl_dyxrzqgkzjsama = %s, ywzl_dyxrzqgkzjlaba = %s, ywzl_dyxrzqgkzjlama = %s, '
                     'ywzl_dyxrzqgkzjsfgl = %s, ywzl_xrjssfgl = %s, ywzl_lhxrzjicslaba = %s, '
                     'ywzl_lhxrzjicslabalama = %s, ywzl_lhxrzjlabalama = %s, ywzl_lhxrzjsfgl = %s, '
@@ -953,6 +956,9 @@ def mzf_to_db(cur, common, table_common_id):
                         common.get('gwys_jzzkqwryzdq') if common.get('gwys_jzzkqwryzdq') != '' else None,
                         common.get('gwys_csjcfcgz') if common.get('gwys_csjcfcgz') != '' else None,
                         common.get('gwys_ffhxhxdgr') if common.get('gwys_ffhxhxdgr') != '' else None,
+                        common.get('gwys_jzzqhhldq') if common.get('gwys_jzzqhhldq') != '' else None,
+                        common.get('gwys_wssaqf') if common.get('gwys_wssaqf') != '' else None,
+                        common.get('gwys_yyzkjc') if common.get('gwys_yyzkjc') != '' else None,
                         common.get('copdzd') if common.get('copdzd') != '' else None,
                         common.get('ywzl') if common.get('ywzl') != '' else None,
                         common.get('ywzl_dyxrzqgkzjsaba') if common.get('ywzl_dyxrzqgkzjsaba') != '' else None,
