@@ -552,7 +552,7 @@ def mzf_to_db(cur, common, table_common_id):
         try:
             logging.info('mzf表入库')
             cur.execute(
-                'INSERT INTO record_mzf2(ID, COMMON_ID, gwys_xy, gwys_hymxtdjb, gwys_jzzkqwryzdq, gwys_csjcfcgz, '
+                'INSERT INTO record_mzf2(ID, COMMON_ID, gwys_xy, gwys_hymxtdjb, gwys_ymfzjzs, gwys_jzzkqwryzdq, gwys_csjcfcgz, '
                 'gwys_ffhxhxdgr, copdzd, ywzl, ywzl_dyxrzqgkzjsaba, ywzl_dyxrzqgkzjsama, ywzl_dyxrzqgkzjlaba, '
                 'ywzl_dyxrzqgkzjlama, ywzl_dyxrzqgkzjsfgl, ywzl_xrjssfgl, ywzl_lhxrzjicslaba, ywzl_lhxrzjicslabalama, '
                 'ywzl_lhxrzjlabalama, ywzl_lhxrzjsfgl, ywzl_kfjssfgl, ywzl_kfcjlsfgl, ywzl_htlywsfgl, fywzl, fywzl_jy, '
@@ -593,10 +593,11 @@ def mzf_to_db(cur, common, table_common_id):
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
-                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
+                '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
                 (None, table_common_id,
                  common.get('gwys_xy') if common.get('gwys_xy') != '' else None,
                  common.get('gwys_hymxtdjb') if common.get('gwys_hymxtdjb') != '' else None,
+                 common.get('gwys_ymfzjzs') if common.get('gwys_ymfzjzs') != '' else None,
                  common.get('gwys_jzzkqwryzdq') if common.get('gwys_jzzkqwryzdq') != '' else None,
                  common.get('gwys_csjcfcgz') if common.get('gwys_csjcfcgz') != '' else None,
                  common.get('gwys_ffhxhxdgr') if common.get('gwys_ffhxhxdgr') != '' else None,
@@ -893,7 +894,7 @@ def mzf_to_db(cur, common, table_common_id):
             try:
                 logging.info('mzf表刷新')
                 cur.execute(
-                    'UPDATE record_mzf2 SET gwys_xy = %s, gwys_hymxtdjb = %s, gwys_jzzkqwryzdq = %s, '
+                    'UPDATE record_mzf2 SET gwys_xy = %s, gwys_hymxtdjb = %s, gwys_ymfzjzs = %s, gwys_jzzkqwryzdq = %s, '
                     'gwys_csjcfcgz = %s, gwys_ffhxhxdgr = %s, copdzd = %s, ywzl = %s, ywzl_dyxrzqgkzjsaba = %s, '
                     'ywzl_dyxrzqgkzjsama = %s, ywzl_dyxrzqgkzjlaba = %s, ywzl_dyxrzqgkzjlama = %s, '
                     'ywzl_dyxrzqgkzjsfgl = %s, ywzl_xrjssfgl = %s, ywzl_lhxrzjicslaba = %s, '
@@ -948,6 +949,7 @@ def mzf_to_db(cur, common, table_common_id):
                     (
                         common.get('gwys_xy') if common.get('gwys_xy') != '' else None,
                         common.get('gwys_hymxtdjb') if common.get('gwys_hymxtdjb') != '' else None,
+                        common.get('gwys_ymfzjzs') if common.get('gwys_ymfzjzs') != '' else None,
                         common.get('gwys_jzzkqwryzdq') if common.get('gwys_jzzkqwryzdq') != '' else None,
                         common.get('gwys_csjcfcgz') if common.get('gwys_csjcfcgz') != '' else None,
                         common.get('gwys_ffhxhxdgr') if common.get('gwys_ffhxhxdgr') != '' else None,
