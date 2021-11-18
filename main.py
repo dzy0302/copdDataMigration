@@ -344,7 +344,8 @@ def common_to_db(cur, common, table_patient_id):
     else:
         table_common_id = table_common_check[0]
         common_update_time = table_common_check[1]
-        if str(common_update_time) != str(common.get('UPDATE_TIME')):
+        # if str(common_update_time) != str(common.get('UPDATE_TIME')):
+        if 1 == 1:
             try:
                 logging.info('common表刷新')
                 cur.execute(
@@ -893,7 +894,8 @@ def mzf_to_db(cur, common, table_common_id):
     else:
         table_mzf_id = table_mzf_check[0]
         mzf_update_time = table_mzf_check[1]
-        if str(mzf_update_time) != str(common.get('UPDATE_TIME')):
+        # if str(mzf_update_time) != str(common.get('UPDATE_TIME')):
+        if 1 == 1:
             try:
                 logging.info('mzf表刷新')
                 cur.execute(
@@ -1277,6 +1279,7 @@ if __name__ == '__main__':
                         break
                 else:
                     logging.warning('[数据长度异常，非452]该数据长度为：' + str(len(common)))
+                    print(record)
             else:
                 flag = False
                 break
