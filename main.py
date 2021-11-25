@@ -172,7 +172,9 @@ def common_to_db(cur, common, table_patient_id):
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'
                 '%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);',
-                (None, 0, 105, 'MZF' if common.get('DISEASE_CODE') == 3 else '', 125, '浙江省中医院',
+                (None,
+                 common.get('BLLX') if common.get('BLLX') != '' else 0,
+                 105, 'MZF' if common.get('DISEASE_CODE') == 3 else '', 125, '浙江省中医院',
                  common.get('bscjrq') if common.get('bscjrq') != '' else None,
                  common.get('blh') if common.get('blh') != '' else None,
                  common.get('nl') if common.get('nl') != '' else None,
@@ -349,7 +351,7 @@ def common_to_db(cur, common, table_patient_id):
             try:
                 logging.info('common表刷新')
                 cur.execute(
-                    'UPDATE record_common2 SET DISEASE_CODE = %s, bscjrq = %s, blh = %s, nl = %s, xingb = %s, '
+                    'UPDATE record_common2 SET BLLX = %s, DISEASE_CODE = %s, bscjrq = %s, blh = %s, nl = %s, xingb = %s, '
                     'csrq = %s, zy = %s, zy_qt = %s, sg = %s, tz = %s, whcd = %s, shent = %s, st_fz = %s, st_zw = %s, '
                     'st_hm = %s, st_ss = %s, st_hh = %s, st_dm = %s, ms_qk = %s, wn = %s, sm = %s, sm_rskn = %s, '
                     'sm_yx = %s, sm_dm = %s, sm_ss = %s, sm_hz = %s, sm_qt = %s, xb = %s, xb_cs = %s, db = %s, '
@@ -375,6 +377,7 @@ def common_to_db(cur, common, table_patient_id):
                     'tz_pfgmzd = %s, tz_zh = %s, CREATE_TIME = %s, UPDATE_TIME = %s WHERE ID = %s AND SUBJECT_ID = 105 '
                     'AND ORG_ID = 125;',
                     (
+                        common.get('BLLX') if common.get('BLLX') != '' else 0,
                         'MZF' if common.get('DISEASE_CODE') == 3 else '',
                         common.get('bscjrq') if common.get('bscjrq') != '' else None,
                         common.get('blh') if common.get('blh') != '' else None,
